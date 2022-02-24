@@ -1,12 +1,13 @@
 /*
  * @Date: 2022-02-24 11:53:49
  * @LastEditors: ChengWang
- * @LastEditTime: 2022-02-24 15:16:47
+ * @LastEditTime: 2022-02-24 15:37:17
  * @FilePath: /zaplog/zaplog/log.go
  */
 package zaplog
 
 import (
+	"fmt"
 	"sync"
 
 	"github.com/natefinch/lumberjack"
@@ -31,6 +32,12 @@ func initZap() {
 	maxBackups := viper.GetInt("Log.MaxBackups")
 	maxAge := viper.GetInt("Log.MaxAge")
 	isCompressed := viper.GetBool("Log.IsCompressed")
+	fmt.Println(logLevel)
+	fmt.Println(logPath)
+	fmt.Println(maxSize)
+	fmt.Println(maxBackups)
+	fmt.Println(maxAge)
+	fmt.Println(isCompressed)
 	initLogger(getLogLevel(logLevel), logPath, maxSize, maxBackups, maxAge, isCompressed)
 	// InitLogger(zapcore.DebugLevel, "./zap_gin_rotation.log", 1, 10, 30, false)
 }
