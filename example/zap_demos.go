@@ -1,0 +1,71 @@
+/*
+ * @Date: 2022-02-15 16:30:28
+ * @LastEditors: ChengWang
+ * @LastEditTime: 2022-02-21 11:53:37
+ * @FilePath: /zaplog/example/zap_demos.go
+ */
+
+package main
+
+import (
+	"math"
+	"net/http"
+
+	"github.com/NorwayLobster/zaplog"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+)
+
+//Q1: logger.Info() 是否线程安全？ 答：应该是
+//Q2: server一般不意外退出，无法执行logger.Sync(), 日志是否能及时刷出 答：能
+//Q3:  模仿lugrus,把logger封装到包里面，每次get即可，且只能初始化一次
+//git repo:  sandipb/zap-examples
+// var sugarLogger *zap.SugaredLogger
+// var logger *zap.Logger
+
+func zap_demo() {
+	zaplog.InitLogger(zapcore.DebugLevel, 1, 10, 30, false)
+	defer zaplog.Sync()
+	// defer sugarLogger.Sync()
+	// simpleHttpGet("www.sogo.com")
+	simpleHttpGetWithLogger("www.baidu.com")
+	// simpleHttpGet("http://www.sogo.com")
+}
+
+// func zap_demo2() {
+// 	zap.S().Infow("An info message", "iteration", 1)
+// 	// zap.L().Infow("An info message", "iteration", 1)
+// 	undo := zap.ReplaceGlobals(logger)
+// 	undo()
+// }
+
+// func zap_demo3() { // customed logger
+// 	cfg := zap.Config{}
+// 	logger, _ = cfg.Build()
+// }
+
+// func simpleHttpGetWithSugarLogger(url string) {
+// 	sugarLogger.Debugf("Trying to hit GET request for %s", url)
+// 	resp, err := http.Get(url)
+// 	if err != nil {
+// 		sugarLogger.Errorf("Error fetching URL %s : Error = %s", url, err)
+// 	} else {
+// 		sugarLogger.Infof("Success! statusCode = %s for URL %s", resp.Status, url)
+// 		resp.Body.Close()
+// 	}
+// }
+
+func simpleHttpGetWithLogger(url string) {
+	var i1 int = 5
+
+	for i := 0; i < math.MaxInt32; i++ {
+		zaplog.Debug("Trying to hit GET request for", zap.Int("val", i1))
+	}
+	resp, err := http.Get(url)
+	if err != nil {
+		zaplog.Error("Error Msg:", zap.String("Error fetching URL:", url), zap.NamedError("Name Error:", err))
+	} else {
+		zaplog.Info("Info Msg:", zap.String("Success! statusCode:", url), zap.String(",for URL:", resp.Status))
+		resp.Body.Close()
+	}
+}
