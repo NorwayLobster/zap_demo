@@ -1,11 +1,11 @@
 /*
  * @Date: 2022-02-24 11:53:00
  * @LastEditors: ChengWang
- * @LastEditTime: 2022-02-24 11:53:11
- * @FilePath: /zaplog/wrapper.go
+ * @LastEditTime: 2022-02-24 15:11:18
+ * @FilePath: /zaplog/zaplog/wrapper.go
  */
 
-package zlog
+package zaplog
 
 import "go.uber.org/zap"
 

@@ -1,4 +1,4 @@
-module github.com/NorwayLobster/zlog
+module github.com/NorwayLobster/zap_demo
 
 go 1.17
 

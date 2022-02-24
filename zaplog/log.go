@@ -1,10 +1,10 @@
 /*
  * @Date: 2022-02-24 11:53:49
  * @LastEditors: ChengWang
- * @LastEditTime: 2022-02-24 14:40:42
- * @FilePath: /zaplog/log.go
+ * @LastEditTime: 2022-02-24 15:16:47
+ * @FilePath: /zaplog/zaplog/log.go
  */
-package zlog
+package zaplog
 
 import (
 	"sync"
