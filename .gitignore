@@ -1,1 +1,4 @@
 *.log
+*.log.gz
+server
+gin_demo
