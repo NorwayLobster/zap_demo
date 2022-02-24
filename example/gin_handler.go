@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-02-21 10:21:15
  * @LastEditors: ChengWang
- * @LastEditTime: 2022-02-21 11:53:43
+ * @LastEditTime: 2022-02-24 15:17:39
  * @FilePath: /zaplog/example/gin_handler.go
  */
 package main
@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/NorwayLobster/zaplog"
+	"github.com/NorwayLobster/zap_demo/zaplog"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

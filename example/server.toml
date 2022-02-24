@@ -1,0 +1,41 @@
+[Config]
+PackageName = "com.bilibili.excalibur" #包名
+# Redis健康检查定时器，单位秒
+RedisHealthCheckTimer = 2
+# 开启心跳
+HeartBeat = true
+
+OuterIP="127.0.0.1"
+OuterPort=9999
+TickInterval = 1000     # 每帧的时间间隔
+pprof-port = 58000
+
+# 是DB的一些存储信息，比如全局的唯一serverid或者uid，实体id
+[DB]
+Addr = "127.0.0.1:6379"
+MaxIdle = 50
+IdleTimeout = 10
+MaxActive = 500
+Password = ""
+Index = 1
+RedisHealthCheckTimer = 5
+
+# 服务器之间属性同步用redis同步，而不是走的消息
+[RedisForServer]
+Addr = "127.0.0.1:6379"
+MaxIdle = 50
+IdleTimeout = 10
+MaxActive = 500
+Password = ""
+Index = 0
+RedisHealthCheckTimer = 5
+
+
+[Log]
+# 日志等级 -1 DEBUG +; 0 INFO +; 1 WARNING + ; 2 ERROR + ; 3 DPanic +; 4 Panic; 5 Fatal;
+Level = -1
+LogPath=  "./zap_test.log"
+MaxSize = 1  # M
+MaxBackups = 10
+MaxAge = 30
+IsCompressed = true
