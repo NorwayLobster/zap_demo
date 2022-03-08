@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-02-24 11:53:49
  * @LastEditors: ChengWang
- * @LastEditTime: 2022-02-24 15:37:17
+ * @LastEditTime: 2022-02-24 17:25:55
  * @FilePath: /zaplog/zaplog/log.go
  */
 package zaplog
@@ -18,10 +18,26 @@ import (
 
 var logger *zap.Logger
 var logOnce sync.Once
+var Out zapcore.WriteSyncer
 
 // InitZapLog initializes Zap log setting once
 func InitZapLog() {
 	logOnce.Do(initZap)
+	zap.Fields([]zap.Field{
+		zap.String("game_name", "excalibur"),
+		zap.String("app_id", "test appid"),
+		zap.String("instance_id", "test INSTANCEID"),
+		zap.String("app_name", "test APPNAME"),
+	}...)
+	// zap.Int("int", _tenInts[0]),
+	// zap.Ints("ints", _tenInts),
+	// zap.Strings("strings", _tenStrings),
+	// zap.Time("time", _tenTimes[0]),
+	// zap.Times("times", _tenTimes),
+	// zap.Object("user1", _oneUser),
+	// zap.Object("user2", _oneUser),
+	// zap.Array("users", _tenUsers),
+	// zap.Error(errExample),
 }
 
 // initZap initializes Zap
@@ -45,8 +61,8 @@ func initZap() {
 // initLogger initializes log settings
 func initLogger(level zapcore.Level, logPath string, maxSize, maxBackups, maxAge int, isCompressed bool) {
 	encoder := getEncoder()
-	writeSyncer := getLogWriter(logPath, maxSize, maxBackups, maxAge, isCompressed)
-	core := zapcore.NewCore(encoder, writeSyncer, level)
+	Out = getLogWriter(logPath, maxSize, maxBackups, maxAge, isCompressed)
+	core := zapcore.NewCore(encoder, Out, level)
 	logger = zap.New(core, zap.AddCaller())
 }
 

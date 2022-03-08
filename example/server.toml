@@ -34,8 +34,8 @@ RedisHealthCheckTimer = 5
 [Log]
 # 日志等级 -1 DEBUG +; 0 INFO +; 1 WARNING + ; 2 ERROR + ; 3 DPanic +; 4 Panic; 5 Fatal;
 Level = -1
-LogPath=  "./zap_test.log"
+LogPath=  "./zap_gin_debug_mode_test.log"
 MaxSize = 1  # M
 MaxBackups = 10
 MaxAge = 30
-IsCompressed = true
+IsCompressed = false

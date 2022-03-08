@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-02-21 10:21:15
  * @LastEditors: ChengWang
- * @LastEditTime: 2022-02-24 15:17:39
+ * @LastEditTime: 2022-02-24 16:38:57
  * @FilePath: /zaplog/example/gin_handler.go
  */
 package main
@@ -26,11 +26,11 @@ func PongHandler(ctx *gin.Context) {
 	fmt.Printf("client ip:%v\n", ctx.ClientIP())
 	i1 := 10
 
-	for i := 0; i < 10000; i++ {
-		// for i := 0; i < math.MaxInt32; i++ {
-		// logger.Debug("Trying to hit GET request for", zap.Int("val", i1))
-		zaplog.Debug("Trying to hit Pong Handler for", zap.String("line:", line), zap.Int("int val:", i1))
-	}
+	// for i := 0; i < 10; i++ {
+	// for i := 0; i < math.MaxInt32; i++ {
+	// logger.Debug("Trying to hit GET request for", zap.Int("val", i1))
+	zaplog.Debug("Trying to hit Pong Handler for", zap.String("line:", line), zap.Int("int val:", i1))
+	// }
 
 	// ctx.Status(200)
 	// ctx.String(200, "hello world")
